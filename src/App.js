@@ -1,10 +1,14 @@
-
 import './App.scss';
+import {useState} from "react"
+import Header from "./components/header";
+import Gallery from "./components/gallery";
 
 function App() {
+  const [imageArray, setimageArray] = useState([])
   return (
     <div className="App">
-     <h3>title</h3>
+     <Header setimageArray={setimageArray}/>
+     <Gallery imageArray={imageArray}/>
     </div>
   );
 }

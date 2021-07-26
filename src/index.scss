@@ -1,8 +1,12 @@
-$maincolor:  #BADA55;
+$maincolor:  #ffffff;
 
-body {
+body,html {
   margin: 0;
    background-color: $maincolor;
+}
+*{
+margin: 0;
+  padding: 0;
 }
 
 code {
