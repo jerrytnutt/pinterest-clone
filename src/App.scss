@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+ 
   width: 100%;
 }
 
@@ -42,3 +43,29 @@ input{
   top: 8px;
  
 }
+.gallery{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: brown;
+  width: 100%;
+  
+}
+.imageContainer{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  padding: 20px;
+  background-color: green;
+  width: 90%;
+
+}
+.card{
+  
+  margin-bottom: 10px;
+  background-color: blue;
+}
+.card img{
+  margin-bottom: 10px;
+}
+
