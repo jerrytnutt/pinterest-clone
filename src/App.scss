@@ -83,23 +83,54 @@ input{
 
 .card img{
   border-radius: 5%;
- 
 }
 
-
 .buttonBox{
+  visibility: hidden;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  flex-basis: 50% 20% 20%;
   position: absolute;
   margin: 0;
   bottom: 0px;
-  width: 50%;
+  width: 90%;
   height: 50px;
   background-color: black;
   z-index: 3;
 }
 
+
+.one{
+  flex-basis: 60%;
+}
+.saveButton{
+  visibility: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: absolute;
+  padding-right: 20px;
+  padding-top: 20px;
+  
+  margin: 0;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50px;
+ 
+  z-index: 3;
+}
+.saveButton button{
+  border-radius: 40%;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border:0;
+  font-size: 16px;
+  width: 90px;
+  height: 50px;
+  
+}
 h4{
   color: green;
   float: left;
@@ -112,16 +143,71 @@ h4{
   align-items: center;
   border: 1px solid black;
 }
+
 .popup-background {
   visibility: hidden;
   position: absolute;
   border-radius: 15px;
-  
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
+
+.card:hover .saveButton{
+  visibility: visible;
+}
+
 .card:hover .popup-background{
   visibility: visible;
+}
+.card:hover .buttonBox{
+  visibility: visible;
+}
+.ImagePage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.doubleView{
+  display: flex;
+  flex-direction: row;
+  
+  
+  width: 800px;
+  
+  padding: 15px;
+  background-color: blueviolet;
+}
+.imageLeft{
+  
+  height: 50px;
+  background-color: green;
+  flex-basis: 50%;
+}
+.imageDetails{
+  
+  height: 50px;
+  background-color: red;
+  flex-basis: 50%;
+}
+.profileDetails{
+  display: flex;
+  background-color: red;
+  width: 100%;
+  
+  
+}
+.blockOne{
+  background-color: green;
+  
+
+}
+.blockTwo{
+  background-color: black;
+  
+  margin-left: auto
+
 }

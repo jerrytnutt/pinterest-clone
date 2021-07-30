@@ -4,6 +4,7 @@ const Gallery = ({imageArray}) =>{
     return(
         <div className="gallery">
             <div className="imageContainer">
+           
            {imageArray.map((item, index) => (
                
            <Image key={index} item={item}/>
