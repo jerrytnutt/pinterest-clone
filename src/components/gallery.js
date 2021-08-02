@@ -1,4 +1,5 @@
 import Image from "./image";
+
 const Gallery = ({imageArray}) =>{
     
     return(

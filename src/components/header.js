@@ -5,7 +5,7 @@ const Header = ({setimageArray}) =>{
     const searchPhoto = async () => {
       const res = await fetch('https://api.unsplash.com/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=car&per_page=20')
       const json = await res.json()
-      console.log(json)
+      //console.log(json)
       setimageArray(json)
         
     }
@@ -14,7 +14,7 @@ const Header = ({setimageArray}) =>{
             
       }
     return(
-        <div className="header">
+      <div className="header">
             <i className="fab fa-pinterest-square"></i>
             <button>Home</button>
             <button>Today</button>
