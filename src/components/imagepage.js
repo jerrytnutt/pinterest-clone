@@ -3,51 +3,50 @@ import {useState} from "react"
 
 import Image from "./image";
 const ImagePage = () =>{
+ 
     
     const [newData, setnewData] = useState([])
     let data = useLocation();
-    console.log(data)
     
-    //const selfData = data.state.user.links.self
+    
+    const selfData = data.state.user.links.followers
     const photo = async () => {
-      const res = await fetch('https://api.unsplash.com/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=car&per_page=20')
+      const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=cats&per_page=20`)
       const json = await res.json()
        console.log(json)
        setnewData(json)  
       }
+     
     return(
-        
-        <div className="ImagePage">
-            <div className="doubleView">
-                <div className="imageLeft">
-                    
-                <div className="shell">
-                <img src={data.state.urls.small} alt=""></img>
-               </div>
-                </div>
-                <div className="imageDetails">
-                  
-                <div className="bbBox">
-              <button className="one">h</button>
-              <button className="two"><i class="fas fa-upload"></i></button>
-              <button className="two"><i class="fas fa-ellipsis-h"></i></button>
+      <div className="ImagePage">
+        <div className="doubleView">
+          <div className="imageLeft">
+            <div className="shell">
+              <img src={data.state.urls.small} alt=""></img>
+            </div>
+          </div>
+          <div className="imageDetails">
+            <div className="actionBox">
+              <div className="actionLeft">
+                <button ><i className="fas fa-ellipsis-h"></i></button>
+                <button ><i className="fas fa-upload"></i></button>
               </div>
-            
-            
+              <button className="actionSave">Save</button>
+            </div>
+            <h2>{data.state.user.portfolio_url}</h2>
+            <h2 className="des">{data.state.alt_description}</h2>
 
-                    <h2>{data.state.user.portfolio_url}</h2>
-                    <h2>{data.state.alt_description}</h2>
-                    <div className="profileDetails">
-                        <div className="blockOne">
-                        <img src={data.state.user.profile_image.small} alt=""></img>
-                        <div className="ptag">
-                        <p>{data.state.user.first_name}</p>
-                        <p>{data.state.user.first_name}</p>
-                        </div>
-                      </div>
-                      <div className="blockTwo">
-                        <img src={data.state.user.profile_image.small} alt=""></img>
-                      </div>
+            <div className="profileDetails">
+              <div className="blockOne">
+                <img src={data.state.user.profile_image.medium} alt=""></img>
+                <div className="ptag">
+                  <p>{data.state.user.name}</p>
+                  <p>{data.state.user.first_name}</p>
+                </div>
+              </div>
+              <div className="blockTwo">
+                <button>Follow</button>
+              </div>
                     </div>
                     <div className="action">
                         <div className="selector">

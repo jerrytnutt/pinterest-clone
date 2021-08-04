@@ -107,7 +107,11 @@ input:hover{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-radius: 5%;
+  border-radius: 10px;
+}
+
+.shell img{
+  border-radius: 15px 0px 0px 15px;
 }
 
 .buttonBox{
@@ -131,6 +135,15 @@ input:hover{
   height: 100%;
   border-radius: 20px;
   background-color: rgb(226, 226, 226);
+  border-radius: 40%;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border:0;
+  font-size: 16px;
+  width: 90px;
+  height: 50px;
 }
 
 .two{
@@ -207,8 +220,6 @@ h4{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: green;
-  clear: both;
 }
 
 .doubleView{
@@ -216,44 +227,35 @@ h4{
   flex-direction: row;
   width: 800px;
   padding: 15px;
-  background-color: blueviolet;
-  clear: both;
 }
 
-.imageLeft{
-  
- 
-  background-color: green;
-  flex-basis: 50%;
-}
-
-.imageDetails{
-  background-color: rgb(209, 73, 236);
+.imageLeft, .imageDetails{
   flex-basis: 50%;
 }
 
 .profileDetails{
   display: flex;
   background-color: red;
-  width: 100%;
-  
-  
+  width: 100%; 
 }
-.blockOne{
-  background-color: green;
-  display: flex;
-  
 
+.blockOne{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blockOne img{
+  border-radius: 50%;
+  
 }
 
 .blockTwo{
   background-color: black;
-  
   margin-left: auto
-
 }
+
 .action{
-  background-color: blue;
   width: 100%;
   height: 200px;
 }
@@ -262,16 +264,12 @@ h4{
   
 }
 
-
-
-
 .g{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 90%;
-  background-color: red;
 }
 .m{
   column-count: 3;
@@ -292,4 +290,46 @@ h4{
   height: 40px;
   background-color: black;
   z-index: 3;
+}
+.actionBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  bottom: 0px;
+  width: 90%;
+  padding: 10px;
+  height: 40px;
+  background-color: black;
+  z-index: 3;
+}
+.actionSave{
+  
+  flex-basis: 10%;
+  height: 100%;
+  border-radius: 20px;
+  border-radius: 40%;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border:0;
+  font-size: 16px;
+  width: 90px;
+  
+}
+.actionLeft{
+  flex-basis: 30%;
+}
+.actionLeft button{
+  height: 30px;
+  width: 50%;
+  border-radius: 20px;
+  background-color: rgb(216, 216, 216);
+
+}
+.des{
+  font-size: 20px;
+  color: black;
 }

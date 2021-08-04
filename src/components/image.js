@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom'
 
 const Image = ({item}) =>{
-   let linkPage = item.user.portfolio_url
-   console.log(linkPage)
+   let linkPage = item.user
+   
    let url = item.user.portfolio_url
    let newUrl;
-   console.log(item)
+  
    if (url !== null){
      if (url.match(/https?:\/\//)){
        newUrl = url.replace(/https?:\/\//, "")
@@ -20,7 +20,9 @@ const Image = ({item}) =>{
    const itemId = item.id
    const newTo = { 
         pathname: `/shop/${itemId}`, 
-        state: item
+        state: item,
+        newUrl: newUrl,
+        linkPage: linkPage
       };
     return(
       <div className="card">
@@ -32,8 +34,8 @@ const Image = ({item}) =>{
             <img src={item.urls.small} alt=""></img>
             <div className="buttonBox">
               <button onClick={() => {window.open(linkPage)}} className="one">{newUrl}</button>
-              <button className="two"><i class="fas fa-upload"></i></button>
-              <button className="two"><i class="fas fa-ellipsis-h"></i></button>
+              <button className="two"><i className="fas fa-upload"></i></button>
+              <button className="two"><i className="fas fa-ellipsis-h"></i></button>
             </div>
         </div>
        </div>

@@ -1,14 +1,17 @@
+import {useState} from "react"
 
 const Header = ({setimageArray}) =>{
-    const searchPhoto = async () => {
-      const res = await fetch('https://api.unsplash.com/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=car&per_page=20')
-      const json = await res.json()
-      //console.log(json)
-      setimageArray(json)
+  const [searchTerm, setsearchTerm] = useState()
+
+  const searchPhoto = async () => {
+    const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=${searchTerm}&per_page=20`)
+    const json = await res.json()
+    console.log(json.results)
+    setimageArray(json.results)
         
     }
     const handleChange =  (e) => {
-       //setsearch(e.target.value)
+      setsearchTerm(e.target.value)
             
       }
     return(
