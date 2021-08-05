@@ -13,8 +13,8 @@ const ImagePage = () =>{
     const photo = async () => {
       const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=cats&per_page=20`)
       const json = await res.json()
-       console.log(json)
-       setnewData(json)  
+       console.log(json.results)
+       setnewData(json.results)  
       }
      
     return(

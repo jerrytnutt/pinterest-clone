@@ -2,6 +2,9 @@ import Image from "./image";
 
 const Gallery = ({imageArray}) =>{
   console.log(imageArray)
+  let endPoint = 20
+ 
+  console.log(imageArray.slice(0,endPoint))
     return(
       <div className="gallery">
         <div className="imageContainer">
