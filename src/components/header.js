@@ -1,32 +1,64 @@
-import {useState} from "react"
-import auth from "firebase"
+import {useState, useEffect} from "react"
+import Input from "./input";
+import auth  from "./firebase";
+
 const Header = ({setimageArray}) =>{
+  const [currentUser, setcurrentUser] = useState()
   const [searchTerm, setsearchTerm] = useState()
   const [signIn, setsignIn] = useState(false)
-  console.log(auth)
-  //auth.createUserWithEmailAndPassword("john@john.com", "123abbbbc")
-  //.then((userCredential) => {
-    // Signed in 
-   // var user = userCredential.user;
-   // console.log(user)
-    // ...
-  //})
- // .catch((error) => {
-   // var errorCode = error.code;
-    //var errorMessage = error.message;
-    // ..
- // });
+
+  console.log(auth.currentUser)
+  const createNewAccount = (email,password) => {
+    auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
+    
+    let user = userCredential.user;
+      })
+    .catch((error) => {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          console.log(`Email address already in use.`);
+          break;
+        case 'auth/invalid-email':
+          console.log(`Email address  is invalid.`);
+          break;
+        case 'auth/operation-not-allowed':
+          console.log(`Error during sign up.`);
+          break;
+        case 'auth/weak-password':
+          console.log('Password is not strong enough. Add additional characters including special characters and numbers.');
+          break;
+        default:
+          console.log(error.message);
+          break;
+      }
+       
+      });
+      const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
+      return unSub
+  }
+  
+   useEffect(() => {
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(user)
+      } else {
+        console.log("None")
+      }
+    });
+  }, []);
   const searchPhoto = async () => {
     const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=${searchTerm}&per_page=50`)
     const json = await res.json()
-    //console.log(json.results)
     setimageArray(json.results)
         
     }
     const signUp = () => {
+      console.log(auth.currentUser)
       setsignIn(true)
     }
     const handleChange =  (e) => {
+      e.preventDefault()
+      
       setsearchTerm(e.target.value)
             
       }
@@ -44,12 +76,9 @@ const Header = ({setimageArray}) =>{
           <i onClick={signUp} className="fas fa-circle"></i>
           <i className="fas fa-sort-down"></i>
           
-          {signIn ? <div className="signInScreen">
-              <input type='text>'></input>
-              <input type='text>'></input>
-              <button></button>
+          {signIn ? <Input createNewAccount={createNewAccount}/>
 
-          </div> : 'Not'}
+           : 'Not'}
          
       </div>
     )
