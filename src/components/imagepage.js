@@ -8,8 +8,12 @@ const ImagePage = () =>{
     const [newData, setnewData] = useState([])
     let data = useLocation();
     
-    
-    //const selfData = data.state.user.links.followers
+    let linkPage = "7";
+    if (data.linkPage !== null){
+      console.log(data.linkPage)
+      linkPage = data.linkPage.portfolio_url
+    }
+   
     const photo = async () => {
       const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=cats&per_page=20`)
       const json = await res.json()
@@ -33,7 +37,7 @@ const ImagePage = () =>{
               </div>
               <button className="actionSave">Save</button>
             </div>
-            <h2>{data.state.user.portfolio_url}</h2>
+            <h2>{linkPage}</h2>
             <h2 className="des">{data.state.alt_description}</h2>
 
             <div className="profileDetails">
@@ -41,12 +45,10 @@ const ImagePage = () =>{
                 <img src={data.state.user.profile_image.medium} alt=""></img>
                 <div className="ptag">
                   <p>{data.state.user.name}</p>
-                  <p>{data.state.user.first_name}</p>
+                  <p>{data.state.user.location}</p>
                 </div>
               </div>
-              <div className="blockTwo">
-                <button>Follow</button>
-              </div>
+              
                     </div>
                     <div className="action">
                         <div className="selector">

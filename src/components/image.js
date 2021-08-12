@@ -10,9 +10,9 @@ const Image = ({item}) =>{
      if (url.match(/https?:\/\//)){
        newUrl = url.replace(/https?:\/\//, "")
      }
-    // url = url.replace("https://", "")
-     //url = url.replace("www", "")
+    
    }else{
+     
     newUrl = item.user.instagram_username
     linkPage = `https://www.instagram.com/${item.user.instagram_username}`
     
@@ -33,7 +33,9 @@ const Image = ({item}) =>{
             </Link>
             <img src={item.urls.small} alt=""></img>
             <div className="buttonBox">
-              <button onClick={() => {window.open(linkPage)}} className="one">{newUrl}</button>
+            {newUrl ? <button onClick={() => {window.open(linkPage)}} className="one">{newUrl}</button>
+
+                  : 'Not'}
               <button className="two"><i className="fas fa-upload"></i></button>
               <button className="two"><i className="fas fa-ellipsis-h"></i></button>
             </div>

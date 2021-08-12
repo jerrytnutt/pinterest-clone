@@ -14,7 +14,7 @@ const Input = ({createNewAccount}) =>{
       }
     const sendCred = ()=> {
       console.log(currentEmail,currentPassword)
-      return createNewAccount(currentEmail,currentPassword)
+      return createNewAccount(currentEmail,currentPassword,true)
 
     }
 
@@ -22,11 +22,18 @@ const Input = ({createNewAccount}) =>{
       <div className="input">
         
         <div className="signInScreen">
+              <h5>Create New Account</h5>
               <input type='text' onChange={emailChange} placeholder="Email"></input>
               <input type='text' onChange={passwordChange} placeholder="Password"></input>
               <input type='text' placeholder="Confirm Password"></input>
               <button className="continue" onClick={sendCred}>Continue</button>
               <p>Or</p>
+              <h5>Sign In</h5>
+              <input type='text' onChange={emailChange} placeholder="Email"></input>
+              <input type='text' onChange={passwordChange} placeholder="Password"></input>
+              <button className="continue" onClick={sendCred}>Continue</button>
+              <p>Or</p>
+              <h5>Use Demo Account</h5>
               <button className="continue">Use Demo Account</button>
               </div>
       </div>

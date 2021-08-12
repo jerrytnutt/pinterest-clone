@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react"
+import {Link} from 'react-router-dom'
 import Input from "./input";
 import auth  from "./firebase";
 
@@ -7,11 +8,26 @@ const Header = ({setimageArray}) =>{
   const [searchTerm, setsearchTerm] = useState()
   const [signIn, setsignIn] = useState(false)
 
-  console.log(auth.currentUser)
-  const createNewAccount = (email,password) => {
+  console.log(currentUser)
+
+  const createNewAccount = (email,password,signIn=false) => {
+    if (signIn){
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+       // Signed in
+       
+       console.log(userCredential.user)
+       // ...
+      })
+     .catch((error) => {
+       console.log(error.code)
+     });
+     const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
+      return unSub
+    }
     auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
     
-    let user = userCredential.user;
+    //let user = userCredential.user;
       })
     .catch((error) => {
       switch (error.code) {
@@ -65,8 +81,11 @@ const Header = ({setimageArray}) =>{
     return(
       <div className="header">
         <i className="fab fa-pinterest-square"></i>
+        <Link  to="/" >
         <button>Home</button>
-        <button>Today</button>
+            </Link>
+        
+        
         <div className="input-wrapper">
           <i onClick={searchPhoto} className="fas fa-search"></i>
           <input type="text" onChange={handleChange} placeholder="Search"/>
@@ -78,7 +97,7 @@ const Header = ({setimageArray}) =>{
           
           {signIn ? <Input createNewAccount={createNewAccount}/>
 
-           : 'Not'}
+           : ''}
          
       </div>
     )
