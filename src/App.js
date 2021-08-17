@@ -7,25 +7,27 @@ import {BrowserRouter as Router,Route}  from 'react-router-dom'
 
 function App() {
   const [imageArray, setimageArray] = useState([])
+  const [searchTerm, setsearchTerm] = useState("puppy")
 
   useEffect(() => {
-    const photo = async () => {
-      const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=cats&per_page=20`)
+    const createDefaultArray = async () => {
+      const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=${searchTerm}&per_page=20`)
       const json = await res.json()
       setimageArray(json.results)  
       }
-      photo()
-  }, []);
+      return createDefaultArray()
+  }, [searchTerm]);
+  
   return (
     <Router>
     <div className="App">
-    <Header setimageArray={setimageArray}/>
+    <Header setimageArray={setimageArray} searchTerm={searchTerm} setsearchTerm={setsearchTerm}/>
     <Route exact path="/">
       
       <Gallery imageArray={imageArray}/>
     </Route>
     <Route exact path={`/shop/:subId`} >
-      <ImagePage/>
+      <ImagePage searchTerm={searchTerm}/>
     </Route>
     </div>
     </Router>

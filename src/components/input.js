@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-const Input = ({createNewAccount}) =>{
+const Input = ({createNewAccount,signInExistingAccount}) =>{
   const [currentEmail, setcurrentEmail] = useState()
   const [currentPassword, setcurrentPassword] = useState()
 
@@ -12,10 +12,14 @@ const Input = ({createNewAccount}) =>{
       e.preventDefault()
       setcurrentPassword(e.target.value)
       }
+
     const sendCred = ()=> {
       console.log(currentEmail,currentPassword)
       return createNewAccount(currentEmail,currentPassword,true)
-
+    }
+    const signIn = ()=> {
+      console.log(currentEmail,currentPassword)
+      return signInExistingAccount(currentEmail,currentPassword)
     }
 
     return(
@@ -31,7 +35,7 @@ const Input = ({createNewAccount}) =>{
               <h5>Sign In</h5>
               <input type='text' onChange={emailChange} placeholder="Email"></input>
               <input type='text' onChange={passwordChange} placeholder="Password"></input>
-              <button className="continue" onClick={sendCred}>Continue</button>
+              <button className="continue" onClick={signIn}>Continue</button>
               <p>Or</p>
               <h5>Use Demo Account</h5>
               <button className="continue">Use Demo Account</button>

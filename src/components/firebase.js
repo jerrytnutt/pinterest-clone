@@ -1,4 +1,4 @@
-import firebase from '@firebase/app';
+import firebase from 'firebase';
 require('firebase/auth');
 
 const firebaseConfig = {
@@ -13,5 +13,7 @@ const firebaseConfig = {
 
   firebase.initializeApp(firebaseConfig)
   const auth = firebase.auth()
+  const db = firebase.firestore()
+  export {db}
   
   export default auth
