@@ -3,6 +3,7 @@ import {useState, useEffect} from "react"
 import Header from "./components/header";
 import Gallery from "./components/gallery";
 import ImagePage from "./components/imagepage";
+import UserPage from "./components/userpage";
 import {BrowserRouter as Router,Route}  from 'react-router-dom'
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
     </Route>
     <Route exact path={`/shop/:subId`} >
       <ImagePage searchTerm={searchTerm}/>
+    </Route>
+    <Route exact path="/UserPage" >
+      <UserPage/>
     </Route>
     </div>
     </Router>

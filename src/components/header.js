@@ -7,11 +7,11 @@ import {db} from "./firebase"
 const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
   const [signIn, setsignIn] = useState(false)
 
-  const [currentUser, setcurrentUser] = useState()
+  const [currentUser, setcurrentUser] = useState(false)
   console.log("Current User", currentUser)
-
+  
   const createNewAccount = (email,password,existingAccount=false) => {
-   // if (currentUser){
+      setsignIn(false)
       auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
        console.log(userCredential.user)
@@ -87,13 +87,14 @@ const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
     }
 
     const setData = () => {
-      console.log(auth.currentUser.uid)
-      let con = auth.currentUser.uid
-      console.log(currentUser)
-      console.log(db)
-      return db.collection('users').doc(con).set({
-        bio:"John"
-      })
+      //console.log(auth.currentUser.uid)
+      //let con = auth.currentUser.uid
+      let con = auth.currentUser
+      console.log(con)
+      //console.log(db)
+     // return db.collection('users').doc(con).set({
+    //    bio:"John"
+      //})
      
     }
 
@@ -117,7 +118,9 @@ const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
         </div>
           <i onClick={setData} className="fas fa-bell"></i>
           <i className="fas fa-comment-dots"></i>
-          <i onClick={displaySignIn} className="fas fa-circle"></i>
+          <Link  to="/UserPage" >
+            <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
+          </Link>
           <i className="fas fa-sort-down"></i>
           
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
