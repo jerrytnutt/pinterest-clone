@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
 .App {
   text-align: center;
   width: 100%;
@@ -282,10 +284,17 @@ h4{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 .blockOne img{
   border-radius: 50%;
+  width: 150px;
+  height: 150px;
   
+}
+.ptag{
+  font-size: 25px;
+  margin-left: 5px;
 }
 
 .blockTwo{
@@ -368,7 +377,9 @@ h4{
 
 }
 .des{
-  font-size: 20px;
+
+  font-family: "Nunito";
+  padding: 25px;
   color: black;
 }
 

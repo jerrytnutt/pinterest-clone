@@ -7,17 +7,17 @@ const ImagePage = ({searchTerm}) =>{
     const [newData, setnewData] = useState([])
     let data = useLocation();
     console.log(data)
-    let linkPage = "7";
+    let linkPage = "";
      if (data.linkPage == null){
-      console.log("Null")
+     // console.log("Null")
       }else{
-        console.log(data.linkPage)
+        //console.log(data.linkPage)
        linkPage = data.linkPage
       }
-      console.log(linkPage)
+      //console.log(linkPage)
       useEffect(() => {
         const photo = async () => {
-          const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=${searchTerm}&per_page=20`)
+          const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=${searchTerm}&per_page=30`)
           const json = await res.json()
          
            setnewData(json.results)  
@@ -37,15 +37,21 @@ const ImagePage = ({searchTerm}) =>{
             <div className="actionBox">
               <div className="actionLeft">
                 <button ><i className="fas fa-ellipsis-h"></i></button>
-                <button ><i className="fas fa-upload"></i></button>
+                
               </div>
               <button className="actionSave">Save</button>
             </div>
-            <h2 className="des">{data.state.alt_description}</h2>
-            <h2>{linkPage}</h2>
+
+            <div className="des">
+              <h2>{data.state.alt_description}</h2>
+              <h2><a href={linkPage}>{linkPage}</a></h2>
+            </div>
+
+
             <div className="profileDetails">
+
               <div className="blockOne">
-                <img src={data.state.user.profile_image.medium} alt=""></img>
+                <img src={data.state.user.profile_image.large} alt=""></img>
                 <div className="ptag">
                   <p>{data.state.user.name}</p>
                   <p>{data.state.user.location}</p>

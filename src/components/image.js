@@ -1,4 +1,6 @@
 import {Link} from 'react-router-dom'
+import auth  from "./firebase";
+import {db} from "./firebase"
 
 const Image = ({item}) =>{
    let newUrl = item.user.portfolio_url
@@ -23,21 +25,55 @@ const Image = ({item}) =>{
         newUrl: newUrl,
         linkPage: linkPage
       };
+    const savePhoto = async () => {
+      if (auth.currentUser === null){
+        return null
+      }
+      let con = auth.currentUser.uid
+      const currentArray = db.collection('users').doc(con);
+      const doc = await currentArray.get();
+      console.log(doc.data())
+      if (!doc.exists) {
+        const savedPhotoArray = []
+        savedPhotoArray.push(item.urls.small)
+        console.log(item.urls.small)
+          return db.collection('users').doc(con).set({
+            name: "john",
+            photoArray:savedPhotoArray
+        })
+      
+      } else {
+        let newArray = doc.data().photoArray
+        newArray.push(item.urls.small)
+        
+        return db.collection('users').doc(con).update({
+          name: "john",
+          photoArray:newArray
+      })
+       
+       }
+     
+      
+    }
     return(
       <div className="card">
+         <Link  to={newTo} >
         <div className="shell">
+       
           <div className="popup-background"></div>
-            <Link  to={newTo} >
-              <div className="saveButton"><button>Save</button></div>
-            </Link>
+            
+              <div onClick={savePhoto} className="saveButton"><button>Save</button></div>
+             
             <img src={item.urls.small} alt=""></img>
+           
             <div className="buttonBox">
             {newUrl ? <button onClick={() => {window.open(linkPage)}} className="one">{newUrl}</button>
            : ""}
-              <button className="two"><i className="fas fa-upload"></i></button>
-              <button className="two"><i className="fas fa-ellipsis-h"></i></button>
+         
+             
             </div>
         </div>
+        </Link>
        </div>
     )
 }

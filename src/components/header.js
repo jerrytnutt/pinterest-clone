@@ -2,7 +2,6 @@ import {useState, useEffect} from "react"
 import {Link} from 'react-router-dom'
 import Input from "./input";
 import auth  from "./firebase";
-import {db} from "./firebase"
 
 const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
   const [signIn, setsignIn] = useState(false)
@@ -57,8 +56,8 @@ const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
       console.log(user)
     })
     .catch((error) => {
-      var errorCode = error.code;
-      console.log(error.code)
+      //var errorCode = error.code;
+      console.log(error)
     });
     const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
       return unSub
@@ -111,17 +110,19 @@ const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
             </Link>
         
         <div className="input-wrapper">
-        <Link  to="/" >
+       
           <i onClick={searchPhotos} className="fas fa-search"></i>
-          </Link>
+          
           <input type="text" onChange={handleChange} placeholder="Search"/>
         </div>
           <i onClick={setData} className="fas fa-bell"></i>
           <i className="fas fa-comment-dots"></i>
-          <Link  to="/UserPage" >
+          
             <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
-          </Link>
+          
+          <Link  to="/UserPage" >
           <i className="fas fa-sort-down"></i>
+          </Link>
           
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
 
