@@ -3,6 +3,7 @@ import {useState} from "react"
 const Input = ({createNewAccount,signInExistingAccount}) =>{
   const [currentEmail, setcurrentEmail] = useState()
   const [currentPassword, setcurrentPassword] = useState()
+  const [passwordRepeat, setpasswordRepeat] = useState()
 
   const emailChange =  (e) => {
     e.preventDefault()
@@ -12,12 +13,25 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
       e.preventDefault()
       setcurrentPassword(e.target.value)
       }
+      const repeatChange =  (e) => {
+        e.preventDefault()
+        setpasswordRepeat(e.target.value)
+        }
 
     const sendCred = ()=> {
+      if (currentPassword !== passwordRepeat){
+        console.log("cannont create")
+        return null
+      }
       console.log(currentEmail,currentPassword)
-      return createNewAccount(currentEmail,currentPassword,true)
+      return createNewAccount(currentEmail,currentPassword)
     }
-    const signIn = ()=> {
+    const signIn = (random=false)=> {
+      if(random === true){
+        
+        return createNewAccount("random","password12345",true)
+        
+      }
       console.log(currentEmail,currentPassword)
       return signInExistingAccount(currentEmail,currentPassword)
     }
@@ -29,8 +43,8 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
               <h5>Create New Account</h5>
               <input type='text' onChange={emailChange} placeholder="Email"></input>
               <input type='text' onChange={passwordChange} placeholder="Password"></input>
-              <input type='text' placeholder="Confirm Password"></input>
-              <button className="continue" onClick={sendCred}>Continue</button>
+              <input type='text' onChange={repeatChange} placeholder="Confirm Password"></input>
+              <button className="Create" onClick={sendCred}>Continue</button>
               <p>Or</p>
               <h5>Sign In</h5>
               <input type='text' onChange={emailChange} placeholder="Email"></input>
@@ -38,7 +52,7 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
               <button className="continue" onClick={signIn}>Continue</button>
               <p>Or</p>
               <h5>Use Demo Account</h5>
-              <button className="continue">Use Demo Account</button>
+              <button className="continue" onClick={() => {signIn(true)}}>Use Demo Account</button>
               </div>
       </div>
     )

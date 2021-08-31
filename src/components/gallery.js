@@ -1,12 +1,12 @@
 import Image from "./image";
 
-const Gallery = ({imageArray}) =>{
+const Gallery = ({imageArray,setsignIn}) =>{
   
     return(
       <div className="gallery">
         <div className="imageContainer">
           {imageArray.map((item, index) => (
-            <Image key={index} item={item}/>
+            <Image setsignIn={setsignIn} key={index} item={item}/>
            )) }
         </div>
        </div>

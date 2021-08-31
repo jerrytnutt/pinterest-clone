@@ -2,12 +2,10 @@ import {Link} from 'react-router-dom'
 import auth  from "./firebase";
 import {db} from "./firebase"
 
-const Image = ({item}) =>{
+const Image = ({item,setsignIn}) =>{
    let newUrl = item.user.portfolio_url
    let linkPage = item.user.portfolio_url
-   //console.log(newUrl,linkPage)
    
-  
    if (newUrl !== null){
     if (newUrl.match(/https?:\/\//)){
      newUrl = newUrl.replace(/https?:\/\//, "")
@@ -16,7 +14,7 @@ const Image = ({item}) =>{
    }else{
     newUrl = item.user.instagram_username
     linkPage = `https://www.instagram.com/${item.user.instagram_username}`
-    //console.log("insta",newUrl,linkPage)
+    
    }
    const itemId = item.id
    const newTo = { 
@@ -26,7 +24,9 @@ const Image = ({item}) =>{
         linkPage: linkPage
       };
     const savePhoto = async () => {
+      
       if (auth.currentUser === null){
+        setsignIn(true)
         return null
       }
       let con = auth.currentUser.uid
@@ -51,9 +51,7 @@ const Image = ({item}) =>{
           photoArray:newArray
       })
        
-       }
-     
-      
+       } 
     }
     return(
       <div className="card">
@@ -61,8 +59,7 @@ const Image = ({item}) =>{
         <div className="shell">
        
           <div className="popup-background"></div>
-            
-              <div onClick={savePhoto} className="saveButton"><button>Save</button></div>
+          <div onClick={savePhoto} className="saveButton" to="/" ><button>Save</button></div>
              
             <img src={item.urls.small} alt=""></img>
            

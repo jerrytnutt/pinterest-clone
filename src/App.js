@@ -9,6 +9,7 @@ import {BrowserRouter as Router,Route}  from 'react-router-dom'
 function App() {
   const [imageArray, setimageArray] = useState([])
   const [searchTerm, setsearchTerm] = useState("puppy")
+  const [signIn, setsignIn] = useState(false)
 
   useEffect(() => {
     const createDefaultArray = async () => {
@@ -22,10 +23,10 @@ function App() {
   return (
     <Router>
     <div className="App">
-    <Header setimageArray={setimageArray} searchTerm={searchTerm} setsearchTerm={setsearchTerm}/>
+    <Header setimageArray={setimageArray} searchTerm={searchTerm} setsearchTerm={setsearchTerm} signIn={signIn} setsignIn={setsignIn}/>
     <Route exact path="/">
       
-      <Gallery imageArray={imageArray}/>
+      <Gallery imageArray={imageArray} setsignIn={setsignIn}/>
     </Route>
     <Route exact path={`/shop/:subId`} >
       <ImagePage searchTerm={searchTerm}/>

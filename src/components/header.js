@@ -3,20 +3,32 @@ import {Link} from 'react-router-dom'
 import Input from "./input";
 import auth  from "./firebase";
 
-const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
-  const [signIn, setsignIn] = useState(false)
+const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
+  
 
   const [currentUser, setcurrentUser] = useState(false)
   console.log("Current User", currentUser)
   
-  const createNewAccount = (email,password,existingAccount=false) => {
+  const createNewAccount = (email,password,random=false) => {
       setsignIn(false)
       auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
+          console.log("already")
        console.log(userCredential.user)
       })
      .catch((error) => {
        /////
+       if (random===true){
+         console.log(email,password)
+        let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for ( var i = 0; i < 10; i++ ) {
+          result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        email = `${result}@website.com`
+        password = "password12345"
+       }
+       console.log(email,password)
       auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
         //let user = userCredential.user;
           })
@@ -62,6 +74,8 @@ const Header = ({setimageArray,searchTerm,setsearchTerm}) =>{
     const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
       return unSub
   }
+
+  
   
    useEffect(() => {
     auth.onAuthStateChanged(function(user) {

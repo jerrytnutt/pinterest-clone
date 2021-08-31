@@ -6,7 +6,7 @@ const ImagePage = ({searchTerm}) =>{
 
     const [newData, setnewData] = useState([])
     let data = useLocation();
-    console.log(data)
+    
     let linkPage = "";
      if (data.linkPage == null){
      // console.log("Null")
