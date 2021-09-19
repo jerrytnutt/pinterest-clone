@@ -18,6 +18,7 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
         setpasswordRepeat(e.target.value)
         }
 
+        
     const sendCred = ()=> {
       if (currentPassword !== passwordRepeat){
         console.log("cannont create")
@@ -26,11 +27,11 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
       console.log(currentEmail,currentPassword)
       return createNewAccount(currentEmail,currentPassword)
     }
+
+
     const signIn = (random=false)=> {
       if(random === true){
-        
         return createNewAccount("random","password12345",true)
-        
       }
       console.log(currentEmail,currentPassword)
       return signInExistingAccount(currentEmail,currentPassword)

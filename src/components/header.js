@@ -4,10 +4,9 @@ import Input from "./input";
 import auth  from "./firebase";
 
 const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
-  
-
   const [currentUser, setcurrentUser] = useState(false)
-  console.log("Current User", currentUser)
+  //console.log("Current User", currentUser)
+  //console.log(signIn,"sign In")
   
   const createNewAccount = (email,password,random=false) => {
       setsignIn(false)
@@ -35,7 +34,7 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
         .catch((error) => {
           switch (error.code) {
             case 'auth/email-already-in-use':
-              console.log(`Email address already in use.`);
+              alert(`Email address already in use.`);
               break;
             case 'auth/invalid-email':
               console.log(`Email address  is invalid.`);
@@ -69,14 +68,12 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
     })
     .catch((error) => {
       //var errorCode = error.code;
-      console.log(error)
+      alert(error.message)
     });
     const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
       return unSub
   }
 
-  
-  
    useEffect(() => {
     auth.onAuthStateChanged(function(user) {
       if (user) {
@@ -95,6 +92,9 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
     }
 
     const displaySignIn = () => {
+      if (signIn){
+        return setsignIn(false)
+      }
       console.log(auth.currentUser)
       setsignIn(true)
     }
@@ -102,15 +102,21 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
     const setData = () => {
       //console.log(auth.currentUser.uid)
       //let con = auth.currentUser.uid
-      let con = auth.currentUser
-      console.log(con)
+
+     // let con = auth.currentUser
+      console.log('j')
+      setcurrentUser(null)
+      auth.signOut().then(function() {
+        console.log('Signed Out');
+      }, function(error) {
+        console.error('Sign Out Error', error);
+      });
+
       //console.log(db)
      // return db.collection('users').doc(con).set({
     //    bio:"John"
       //})
-     
     }
-
     const handleChange =  (e) => {
       e.preventDefault()
       setsearchTerm(e.target.value)
@@ -133,10 +139,11 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
           <i className="fas fa-comment-dots"></i>
           
             <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
-          
-          <Link  to="/UserPage" >
+         
+          <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
           <i className="fas fa-sort-down"></i>
           </Link>
+        
           
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
 

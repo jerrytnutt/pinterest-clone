@@ -25,7 +25,6 @@ function App() {
     <div className="App">
     <Header setimageArray={setimageArray} searchTerm={searchTerm} setsearchTerm={setsearchTerm} signIn={signIn} setsignIn={setsignIn}/>
     <Route exact path="/">
-      
       <Gallery imageArray={imageArray} setsignIn={setsignIn}/>
     </Route>
     <Route exact path={`/shop/:subId`} >
@@ -38,5 +37,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
