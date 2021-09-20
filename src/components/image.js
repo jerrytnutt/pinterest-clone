@@ -56,7 +56,7 @@ const Image = ({item,setsignIn}) =>{
     return(
       <div className="card">
          <Link  to={newTo} >
-        <div className="shell">
+        <div onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="shell">
        
           <div className="popup-background"></div>
           <div onClick={savePhoto} className="saveButton" to="/" ><button>Save</button></div>

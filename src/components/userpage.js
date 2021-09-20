@@ -1,13 +1,28 @@
 import auth  from "./firebase";
+import {db} from "./firebase"
+import {useState, useEffect} from "react"
 
-const userPage = () =>{
-  let con = auth.currentUser
-  let au = con.bc.email
+const UserPage = () =>{
+  const [newArray, setnewArray] = useState([])
+  
+
+  useEffect(() => {
+    const getArray = async () => {
+      let con = auth.currentUser.uid
+  
+      const currentArray = db.collection('users').doc(con);
+      const doc = await currentArray.get();
+      return setnewArray(doc.data().photoArray)
+    }
+    getArray()
+  }, [newArray]);
+  
+  
              
      return(
      <div className="userPage">
-       <h2>{au}</h2>
+       <h2>{newArray}</h2>
      </div>
                )
            }
-           export default userPage
+           export default UserPage

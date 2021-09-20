@@ -1,5 +1,7 @@
 import {useLocation} from "react-router-dom";
 import {useState, useEffect} from "react"
+import auth  from "./firebase";
+import {db} from "./firebase"
 
 import Image from "./image";
 const ImagePage = ({searchTerm}) =>{
@@ -24,7 +26,33 @@ const ImagePage = ({searchTerm}) =>{
           }
           photo()
       }, [searchTerm]);
-     
+      const savePhoto = async () => {
+        let con = auth.currentUser.uid
+        const currentArray = db.collection('users').doc(con);
+        const doc = await currentArray.get();
+        console.log(doc.data())
+        if (!doc.exists) {
+          const savedPhotoArray = []
+          savedPhotoArray.push(data.state.urls.regular)
+          console.log(data.state.urls.regular)
+            return db.collection('users').doc(con).set({
+              name: "john",
+              photoArray:savedPhotoArray
+          })
+        
+        } else {
+    
+    
+            let newArray = doc.data().photoArray
+          newArray.push(data.state.urls.regular)
+          
+          return db.collection('users').doc(con).update({
+            name: "john",
+            photoArray:newArray
+        })
+         
+         } 
+      }
     return(
       <div className="ImagePage">
         <div className="doubleView">
@@ -35,16 +63,11 @@ const ImagePage = ({searchTerm}) =>{
           </div>
           <div className="imageDetails">
             <div className="actionBox">
-              <div className="actionLeft">
-                <button ><i className="fas fa-ellipsis-h"></i></button>
-                
-              </div>
-              <button className="actionSave">Save</button>
+              <button onClick={savePhoto} className="actionSave">Save</button>
             </div>
-
             <div className="des">
               <h2>{data.state.alt_description}</h2>
-              <h2><a href={linkPage}>{linkPage}</a></h2>
+              <div className="PageLink" onClick={() => {window.open(linkPage)}}>{linkPage}</div>
             </div>
 
 
@@ -60,10 +83,7 @@ const ImagePage = ({searchTerm}) =>{
               
                     </div>
                     <div className="action">
-                        <div className="selector">
-                            <button>Photos</button>
-                            <button>Comments</button>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

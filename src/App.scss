@@ -297,6 +297,8 @@ h4{
   margin-left: 5px;
 }
 
+
+
 .blockTwo{
   background-color: black;
   margin-left: auto
@@ -381,8 +383,15 @@ h4{
   font-family: "Nunito";
   padding: 25px;
   color: black;
+  
 }
-
+.PageLink{
+  border: 1px solid black;
+  background-color: blue;
+}
+.PageLink:hover{
+  cursor: pointer;
+}
 .grey{
   color: grey;
   
