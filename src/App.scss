@@ -89,7 +89,6 @@ input:hover{
   padding: 5px;
   border: 2px solid rgb(207, 207, 207);
   background-color: white;
-  color: rgb(207, 207, 207);;
   margin-bottom: 5px;
 }
 .signInScreen .continue{
@@ -100,6 +99,8 @@ input:hover{
   padding: 5px;
   background-color: rgb(204, 14, 14);
   color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
 }
 
@@ -207,7 +208,7 @@ input:hover{
   right: 0;
   width: 50%;
   height: 50px;
-  z-index: 3;
+  z-index: 6;
 }
 .saveButton button{
   border-radius: 40%;
@@ -313,13 +314,6 @@ h4{
   
 }
 
-.g{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-}
 .m{
   column-count: 3;
   column-gap: 15px;

@@ -1,11 +1,10 @@
 import auth  from "./firebase";
 import {db} from "./firebase"
 import {useState, useEffect} from "react"
+import Savedimage from "./savedimage";
 
 const UserPage = () =>{
   const [newArray, setnewArray] = useState([])
-  
-
   useEffect(() => {
     const getArray = async () => {
       let con = auth.currentUser.uid
@@ -15,13 +14,18 @@ const UserPage = () =>{
       return setnewArray(doc.data().photoArray)
     }
     getArray()
-  }, [newArray]);
-  
-  
-             
+  }, [newArray]);        
      return(
-     <div className="userPage">
-       <h2>{newArray}</h2>
+      <div className="gallery">
+       <div className="imageContainer">
+            
+           
+           {newArray.map((item, index) => (
+               
+           <Savedimage key={index} item={item}/>
+           )) }
+           </div>
+        
      </div>
                )
            }

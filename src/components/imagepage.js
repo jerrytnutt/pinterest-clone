@@ -89,7 +89,7 @@ const ImagePage = ({searchTerm}) =>{
             </div>
             <h2>More Like This</h2>
             
-            <div className="g">
+            <div>
             <div className="m">
            
            {newData.map((item, index) => (

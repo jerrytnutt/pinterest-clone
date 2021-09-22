@@ -1,8 +1,11 @@
 import {Link} from 'react-router-dom'
 import auth  from "./firebase";
 import {db} from "./firebase"
+import { useHistory } from "react-router-dom";
 
 const Image = ({item,setsignIn}) =>{
+  let history = useHistory();
+
    let newUrl = item.user.portfolio_url
    let linkPage = item.user.portfolio_url
    
@@ -52,14 +55,29 @@ const Image = ({item,setsignIn}) =>{
       })
        
        } 
+      
+    }
+    const openNow = (ar) => {
+      // just put another button
+      if (ar === '1'){
+       
+        return history.push(newTo)
+
+      }
+      
+      return savePhoto()
+     // window.scrollTo({top: 0, behavior: 'smooth'})
+      //return history.push(newTo)
     }
     return(
       <div className="card">
-         <Link  to={newTo} >
-        <div onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="shell">
+         
+        <div onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}} className="shell">
        
           <div className="popup-background"></div>
-          <div onClick={savePhoto} className="saveButton" to="/" ><button>Save</button></div>
+          <div className="saveButton" >
+          <button onClick={() => {openNow('1')}}>View</button>
+            <button onClick={() => {openNow('2')}}>Save</button></div>
              
             <img src={item.urls.small} alt=""></img>
            
@@ -70,7 +88,7 @@ const Image = ({item,setsignIn}) =>{
              
             </div>
         </div>
-        </Link>
+      
        </div>
     )
 }

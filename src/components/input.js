@@ -21,7 +21,7 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
         
     const sendCred = ()=> {
       if (currentPassword !== passwordRepeat){
-        console.log("cannont create")
+        alert("Please make sure the passwords match.")
         return null
       }
       console.log(currentEmail,currentPassword)
@@ -45,13 +45,13 @@ const Input = ({createNewAccount,signInExistingAccount}) =>{
               <input type='text' onChange={emailChange} placeholder="Email"></input>
               <input type='text' onChange={passwordChange} placeholder="Password"></input>
               <input type='text' onChange={repeatChange} placeholder="Confirm Password"></input>
-              <button className="Create" onClick={sendCred}>Continue</button>
-              <p>Or</p>
+              <button className="continue" onClick={sendCred}>Create New Account</button>
+             
               <h5>Sign In</h5>
               <input type='text' onChange={emailChange} placeholder="Email"></input>
               <input type='text' onChange={passwordChange} placeholder="Password"></input>
-              <button className="continue" onClick={signIn}>Continue</button>
-              <p>Or</p>
+              <button className="continue" onClick={signIn}>Sign In</button>
+              
               <h5>Use Demo Account</h5>
               <button className="continue" onClick={() => {signIn(true)}}>Use Demo Account</button>
               </div>
