@@ -5,6 +5,7 @@ import auth  from "./firebase";
 
 const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
   const [currentUser, setcurrentUser] = useState(false)
+  const [boxDisplay, setboxDisplay] = useState("none")
   //console.log("Current User", currentUser)
   //console.log(signIn,"sign In")
   
@@ -121,6 +122,13 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
       e.preventDefault()
       setsearchTerm(e.target.value)
     }
+    const boxDisplayChange = () => {
+      console.log(8)
+      if (boxDisplay === "none"){
+        return setboxDisplay("flex")
+      }
+      return setboxDisplay("none")
+    }
 
     return(
       <div className="header">
@@ -140,9 +148,16 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
           
             <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
          
-          <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
-          <i className="fas fa-sort-down"></i>
-          </Link>
+          
+          <i onClick={boxDisplayChange} className="fas fa-sort-down"></i>
+          <div  style={{ display: boxDisplay}} className="selectionBox">
+           <button>Sign Out</button>
+           <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
+           <button>Collection</button>
+           </Link>
+
+          </div>
+          
         
           
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
