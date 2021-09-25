@@ -4,20 +4,16 @@ import {db} from "./firebase"
 import { useHistory } from "react-router-dom";
 
 const Image = ({item,setsignIn}) =>{
-  let history = useHistory();
-
-   let newUrl = item.user.portfolio_url
-   let linkPage = item.user.portfolio_url
-   
-   if (newUrl !== null){
+  const history = useHistory();
+  let newUrl = item.user.portfolio_url
+  let linkPage = item.user.portfolio_url
+  if (newUrl !== null){
     if (newUrl.match(/https?:\/\//)){
-     newUrl = newUrl.replace(/https?:\/\//, "")
+      newUrl = newUrl.replace(/https?:\/\//, "")
    }
-     //console.log("other",newUrl,linkPage)
-   }else{
+  }else{
     newUrl = item.user.instagram_username
     linkPage = `https://www.instagram.com/${item.user.instagram_username}`
-    
    }
    const itemId = item.id
    const newTo = { 
@@ -27,7 +23,6 @@ const Image = ({item,setsignIn}) =>{
         linkPage: linkPage
       };
     const savePhoto = async () => {
-      
       if (auth.currentUser === null){
         setsignIn(true)
         return null
@@ -35,60 +30,41 @@ const Image = ({item,setsignIn}) =>{
       let con = auth.currentUser.uid
       const currentArray = db.collection('users').doc(con);
       const doc = await currentArray.get();
-      console.log(doc.data())
+      
       if (!doc.exists) {
         const savedPhotoArray = []
         savedPhotoArray.push(item.urls.small)
-        console.log(item.urls.small)
-          return db.collection('users').doc(con).set({
-            name: "john",
-            photoArray:savedPhotoArray
+        return db.collection('users').doc(con).set({
+          name: "john",
+          photoArray:savedPhotoArray
         })
-      
       } else {
         let newArray = doc.data().photoArray
         newArray.push(item.urls.small)
-        
         return db.collection('users').doc(con).update({
           name: "john",
-          photoArray:newArray
+          photoArray: newArray
       })
-       
        } 
-      
     }
-    const openNow = (ar) => {
-      // just put another button
-      if (ar === '1'){
-       
-        return history.push(newTo)
-
-      }
-      
-      return savePhoto()
-     // window.scrollTo({top: 0, behavior: 'smooth'})
-      //return history.push(newTo)
+    const viewPhoto = () => {
+      return history.push(newTo)
     }
     return(
       <div className="card">
-         
         <div onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}} className="shell">
-       
           <div className="popup-background"></div>
           <div className="saveButton" >
-          <button onClick={() => {openNow('1')}}>View</button>
-            <button onClick={() => {openNow('2')}}>Save</button></div>
+            <button className="view" onClick={viewPhoto}>View</button>
+            <button onClick={savePhoto}>Save</button></div>
              
             <img src={item.urls.small} alt=""></img>
            
             <div className="buttonBox">
             {newUrl ? <button onClick={() => {window.open(linkPage)}} className="one">{newUrl}</button>
            : ""}
-         
-             
             </div>
         </div>
-      
        </div>
     )
 }

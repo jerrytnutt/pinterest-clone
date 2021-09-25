@@ -23,7 +23,11 @@ function App() {
   return (
     <Router>
     <div className="App">
-    <Header setimageArray={setimageArray} searchTerm={searchTerm} setsearchTerm={setsearchTerm} signIn={signIn} setsignIn={setsignIn}/>
+    <Header setimageArray={setimageArray} 
+      searchTerm={searchTerm} 
+      setsearchTerm={setsearchTerm} 
+      signIn={signIn} 
+      setsignIn={setsignIn}/>
     <Route exact path="/">
       <Gallery imageArray={imageArray} setsignIn={setsignIn}/>
     </Route>

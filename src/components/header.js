@@ -6,20 +6,15 @@ import auth  from "./firebase";
 const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
   const [currentUser, setcurrentUser] = useState(false)
   const [boxDisplay, setboxDisplay] = useState("none")
-  //console.log("Current User", currentUser)
-  //console.log(signIn,"sign In")
-  
+
   const createNewAccount = (email,password,random=false) => {
-      setsignIn(false)
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          console.log("already")
-       console.log(userCredential.user)
+    setsignIn(false)
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+         console.log(userCredential.user)
       })
      .catch((error) => {
-       /////
        if (random===true){
-         console.log(email,password)
         let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let result = '';
         for ( var i = 0; i < 10; i++ ) {
@@ -28,9 +23,7 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
         email = `${result}@website.com`
         password = "password12345"
        }
-       console.log(email,password)
       auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        //let user = userCredential.user;
           })
         .catch((error) => {
           switch (error.code) {
@@ -49,36 +42,30 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
             default:
               alert(error.message);
               break;
-          }
-           
+          } 
           });
           const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
           return unSub
      });
-     ///
      const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
-      return unSub
-   // }  
+      return unSub 
   }
 
   const signInExistingAccount = (email,password) => {
     auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       var user = userCredential.user;
-      console.log(user)
     })
     .catch((error) => {
-      //var errorCode = error.code;
       alert(error.message)
     });
     const unSub = auth.onAuthStateChanged(user => {setcurrentUser(user)})
       return unSub
   }
 
-   useEffect(() => {
+  useEffect(() => {
     auth.onAuthStateChanged(function(user) {
       if (user) {
-        console.log(user)
         setcurrentUser(user)
       } else {
         console.log("No current User")
@@ -96,34 +83,24 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
       if (signIn){
         return setsignIn(false)
       }
-      console.log(auth.currentUser)
       setsignIn(true)
     }
 
-    const setData = () => {
-      //console.log(auth.currentUser.uid)
-      //let con = auth.currentUser.uid
-
-     // let con = auth.currentUser
-      console.log('j')
+    const signOut = () => {
       setcurrentUser(null)
       auth.signOut().then(function() {
         console.log('Signed Out');
       }, function(error) {
         console.error('Sign Out Error', error);
       });
-
-      //console.log(db)
-     // return db.collection('users').doc(con).set({
-    //    bio:"John"
-      //})
     }
+
     const handleChange =  (e) => {
       e.preventDefault()
       setsearchTerm(e.target.value)
     }
+
     const boxDisplayChange = () => {
-      console.log(8)
       if (boxDisplay === "none"){
         return setboxDisplay("flex")
       }
@@ -134,32 +111,23 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
       <div className="header">
         <i className="fab fa-pinterest-square"></i>
         <Link  to="/" >
-        <button>Home</button>
-            </Link>
-        
+          <button>Home</button>
+        </Link>
         <div className="input-wrapper">
-       
           <i onClick={searchPhotos} className="fas fa-search"></i>
-          
           <input type="text" onChange={handleChange} placeholder="Search"/>
         </div>
-          <i onClick={setData} className="fas fa-bell"></i>
+          <i className="fas fa-bell"></i>
           <i className="fas fa-comment-dots"></i>
-          
-            <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
-         
-          
+          <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
           <i onClick={boxDisplayChange} className="fas fa-sort-down"></i>
-          <div  style={{ display: boxDisplay}} className="selectionBox">
-           <button>Sign Out</button>
-           <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
-           <button>Collection</button>
-           </Link>
 
+          <div  style={{ display: boxDisplay}} className="selectionBox">
+            <button onClick={signOut}>Sign Out</button>
+           <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
+             <button>Collection</button>
+           </Link>
           </div>
-          
-        
-          
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
 
            : ''}

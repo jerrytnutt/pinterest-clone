@@ -18,15 +18,11 @@ const UserPage = () =>{
      return(
       <div className="gallery">
        <div className="imageContainer">
-            
-           
-           {newArray.map((item, index) => (
-               
-           <Savedimage key={index} item={item}/>
+         {newArray.map((item, index) => (
+        <Savedimage key={index} item={item}/>
            )) }
            </div>
-        
      </div>
                )
            }
-           export default UserPage
+export default UserPage
