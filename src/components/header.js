@@ -6,12 +6,16 @@ import auth  from "./firebase";
 const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
   const [currentUser, setcurrentUser] = useState(false)
   const [boxDisplay, setboxDisplay] = useState("none")
+  const [firstLetter, setfirstLetter] = useState("")
 
   const createNewAccount = (email,password,random=false) => {
     setsignIn(false)
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
          console.log(userCredential.user)
+         let newLet = email.substring(0, 1)
+         console.log(newLet)
+         setfirstLetter( newLet )
       })
      .catch((error) => {
        if (random===true){
@@ -52,6 +56,7 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
   }
 
   const signInExistingAccount = (email,password) => {
+    setsignIn(false)
     auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       var user = userCredential.user;
@@ -119,7 +124,7 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
         </div>
           <i className="fas fa-bell"></i>
           <i className="fas fa-comment-dots"></i>
-          <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
+          <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}><span className="letter">{firstLetter}</span></i>
           <i onClick={boxDisplayChange} className="fas fa-sort-down"></i>
 
           <div  style={{ display: boxDisplay}} className="selectionBox">

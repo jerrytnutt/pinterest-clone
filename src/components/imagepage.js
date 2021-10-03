@@ -68,7 +68,7 @@ const ImagePage = ({searchTerm}) =>{
                 </div>
               </div>
             </div>
-                <div className="action"></div>
+                
                 </div>
             </div>
             <h2>More Like This</h2>
