@@ -6,15 +6,19 @@ import Image from "./image";
 
 const ImagePage = ({searchTerm}) =>{
   const [newData, setnewData] = useState([])
+  
   let data = useLocation();
     
-  let linkPage = "";
+  let linkPage = data.linkPage;
     if (data.linkPage == null){
       console.log("Null")
     }else{
       linkPage = data.linkPage
       }
+
+      
     useEffect(() => {
+      
       const photo = async () => {
       const res = await fetch(`https://api.unsplash.com/search/photos/?client_id=yARgx04JGwM7P8THJFN-9KUkZgAG3yDeRiOKRDgTg7g&query=${searchTerm}&per_page=30`)
       const json = await res.json()
@@ -57,7 +61,9 @@ const ImagePage = ({searchTerm}) =>{
             </div>
             <div className="des">
               <h2>{data.state.alt_description}</h2>
-              <div className="PageLink" onClick={() => {window.open(linkPage)}}>{linkPage}</div>
+
+              <div className="PageLink" onClick={() => {window.open(linkPage)}}>{data.linkPage}</div>
+
             </div>
             <div className="profileDetails">
               <div className="blockOne">

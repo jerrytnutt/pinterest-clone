@@ -5,16 +5,16 @@ import Savedimage from "./savedimage";
 
 const UserPage = () =>{
   const [newArray, setnewArray] = useState([])
-  useEffect(() => {
-    const getArray = async () => {
-      let con = auth.currentUser.uid
   
-      const currentArray = db.collection('users').doc(con);
-      const doc = await currentArray.get();
-      return setnewArray(doc.data().photoArray)
-    }
-    getArray()
-  }, [newArray]);        
+  
+  const getArray = async () => {
+    let con = auth.currentUser.uid
+    
+    const currentArray = db.collection('users').doc(con);
+    const doc = await currentArray.get();
+    return setnewArray(doc.data().photoArray)
+  }
+  getArray()       
      return(
       <div className="gallery">
        <div className="imageContainer">

@@ -33,14 +33,15 @@ const Image = ({item,setsignIn}) =>{
       
       if (!doc.exists) {
         const savedPhotoArray = []
-        savedPhotoArray.push(item.urls.small)
+        savedPhotoArray.push({0:item.urls.small,1:item.urls.regular})
+        console.log(item.urls)
         return db.collection('users').doc(con).set({
           name: "john",
           photoArray:savedPhotoArray
         })
       } else {
         let newArray = doc.data().photoArray
-        newArray.push(item.urls.small)
+        newArray.push({0:item.urls.small,1:item.urls.regular})
         return db.collection('users').doc(con).update({
           name: "john",
           photoArray: newArray
