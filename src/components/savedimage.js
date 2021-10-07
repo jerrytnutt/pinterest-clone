@@ -24,12 +24,13 @@ const Savedimage = ({item,getArray}) =>{
     
     return(
       <div style={{ display: two}} className="card">
-        <div className="shell">
+        <div onClick={changeDisplay} style={{ display: display}} className="centerImage"><img src={item[1]} alt=""></img></div>
+        <div onClick={changeDisplay} className="shell">
         <div className="popup-background"></div>
         <button onClick={changet}>yr</button>
-        <button onClick={changeDisplay}>yryftdretretdtd</button>
+        
         <img src={item[0]} alt=""></img>
-        <div style={{ display: display}} className="centerImage"><img src={item[1]} alt=""></img></div>
+        
             </div>
         </div>
     )
