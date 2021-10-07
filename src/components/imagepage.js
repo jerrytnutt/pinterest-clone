@@ -31,6 +31,7 @@ const ImagePage = ({searchTerm}) =>{
         const currentArray = db.collection('users').doc(con);
         const doc = await currentArray.get();
         if (!doc.exists) {
+          console.log(7)
           const savedPhotoArray = []
           savedPhotoArray.push(data.state.urls.regular)
             return db.collection('users').doc(con).set({
@@ -39,6 +40,7 @@ const ImagePage = ({searchTerm}) =>{
           })
 
         }else{
+          console.log(4)
           let newArray = doc.data().photoArray
           newArray.push(data.state.urls.regular)
           return db.collection('users').doc(con).update({
