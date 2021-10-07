@@ -1,18 +1,25 @@
-import {useState, useEffect} from "react"
+import {useState} from "react"
 
-const Savedimage = ({item}) =>{
+const Savedimage = ({item,getArray}) =>{
     const [display, setdisplay] = useState("none")
-    //console.log(item)
+
+  
     const changeDisplay = () =>{
-        setdisplay("flex")
+        
+      if (display === "none"){
+          return setdisplay("flex")
+      }
+      return setdisplay("none")
+        
     }
+    
    
     return(
       <div onClick={changeDisplay} className="card">
-        <div onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="shell">
+        <div onClick={() => {getArray(true,item[0])}} className="shell">
         <div className="popup-background"></div>
         <img src={item[0]} alt=""></img>
-        <div style={{ display: display}} className="regularI"><img src={item[1]} alt=""></img></div>
+        <div style={{ display: display}} className="centerImage"><img src={item[1]} alt=""></img></div>
             </div>
         </div>
     )

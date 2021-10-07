@@ -128,10 +128,11 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
           <i onClick={boxDisplayChange} className="fas fa-sort-down"></i>
 
           <div  style={{ display: boxDisplay}} className="selectionBox">
-            <button onClick={signOut}>Sign Out</button>
-           <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
+          <Link  to={currentUser ? '/UserPage' : '#'} style={{ color: "grey" }} >
              <button>Collection</button>
            </Link>
+            <button onClick={signOut}>Sign Out</button>
+           
           </div>
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
 
