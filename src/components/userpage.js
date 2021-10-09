@@ -6,7 +6,6 @@ import Savedimage from "./savedimage";
 const UserPage = () =>{
   const [newArray, setnewArray] = useState([])
   
-  
   const getArray = async (change,item) => {
     if (change){
       let con = auth.currentUser.uid
@@ -15,12 +14,10 @@ const UserPage = () =>{
           newArray.splice(i, 1);   
         }
       }
-     
-      const myArray = newArray
-     console.log(myArray)
-        db.collection('users').doc(con).update({
-            name: "john",
-           photoArray:myArray
+     const myArray = newArray
+     db.collection('users').doc(con).update({
+       name: "name",
+       photoArray:myArray
        })
      
         return setnewArray(myArray)
@@ -28,34 +25,26 @@ const UserPage = () =>{
   }
     useEffect(() => {
       async function fetchData() {
-          try {
-
-            let con = auth.currentUser.uid
-            const currentArray = db.collection('users').doc(con);
-            const doc = await currentArray.get();
-            console.log(doc.data().photoArray)
-            return setnewArray(doc.data().photoArray)
-
-
-
-          } catch (e) {
-              console.error(e);
+        try {
+          let con = auth.currentUser.uid
+          const currentArray = db.collection('users').doc(con);
+          const doc = await currentArray.get();
+          
+          return setnewArray(doc.data().photoArray)
+      } catch (e) {
+          console.error(e);
           }
       };
       fetchData();
   },[]);
-  
-  
-  
-       
-     return(
+    return(
       <div className="gallery">
        <div className="imageContainer">
          {newArray.map((item, index) => (
         <Savedimage key={index} item={item} getArray={getArray}/>
            )) }
-           </div>
-     </div>
+        </div>
+      </div>
                )
            }
 export default UserPage

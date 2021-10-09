@@ -16,7 +16,6 @@ const ImagePage = ({searchTerm}) =>{
       linkPage = data.linkPage
       }
 
-      
     useEffect(() => {
       
       const photo = async () => {
@@ -26,25 +25,24 @@ const ImagePage = ({searchTerm}) =>{
           }
       photo()
       }, [searchTerm]);
+      //// remove all
       const savePhoto = async () => {
         let con = auth.currentUser.uid
         const currentArray = db.collection('users').doc(con);
         const doc = await currentArray.get();
         if (!doc.exists) {
-          console.log(7)
           const savedPhotoArray = []
           savedPhotoArray.push(data.state.urls.regular)
             return db.collection('users').doc(con).set({
-              name: "john",
+              name: "name",
               photoArray:savedPhotoArray
           })
 
         }else{
-          console.log(4)
           let newArray = doc.data().photoArray
           newArray.push(data.state.urls.regular)
           return db.collection('users').doc(con).update({
-            name: "john",
+            name: "name",
             photoArray:newArray
         })
          } 
@@ -58,9 +56,7 @@ const ImagePage = ({searchTerm}) =>{
             </div>
           </div>
           <div className="imageDetails">
-            <div className="actionBox">
-              <button onClick={savePhoto} className="actionSave">Save</button>
-            </div>
+            
             <div className="des">
               <h2>{data.state.alt_description}</h2>
 
@@ -77,7 +73,7 @@ const ImagePage = ({searchTerm}) =>{
               </div>
             </div>
                 
-                </div>
+          </div>
             </div>
             <h2>More Like This</h2>
             <div>

@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom'
 import auth  from "./firebase";
 import {db} from "./firebase"
 import { useHistory } from "react-router-dom";
@@ -36,14 +35,14 @@ const Image = ({item,setsignIn}) =>{
         savedPhotoArray.push({0:item.urls.small,1:item.urls.regular})
         console.log(item.urls)
         return db.collection('users').doc(con).set({
-          name: "john",
+          name: "name",
           photoArray:savedPhotoArray
         })
       } else {
         let newArray = doc.data().photoArray
         newArray.push({0:item.urls.small,1:item.urls.regular})
         return db.collection('users').doc(con).update({
-          name: "john",
+          name: "name",
           photoArray: newArray
       })
        } 
@@ -57,7 +56,8 @@ const Image = ({item,setsignIn}) =>{
           <div className="popup-background"></div>
           <div className="saveButton" >
             <button className="view" onClick={viewPhoto}>View</button>
-            <button onClick={savePhoto}>Save</button></div>
+            <button onClick={savePhoto}>Save</button>
+          </div>
              
             <img src={item.urls.small} alt=""></img>
            
@@ -66,7 +66,7 @@ const Image = ({item,setsignIn}) =>{
            : ""}
             </div>
         </div>
-       </div>
+      </div>
     )
 }
 export default Image

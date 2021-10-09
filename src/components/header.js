@@ -6,26 +6,23 @@ import auth  from "./firebase";
 const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
   const [currentUser, setcurrentUser] = useState(false)
   const [boxDisplay, setboxDisplay] = useState("none")
-  const [firstLetter, setfirstLetter] = useState("")
+  
 
   const createNewAccount = (email,password,random=false) => {
     setsignIn(false)
     auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-         console.log(userCredential.user)
-         let newLet = email.substring(0, 1)
-         console.log(newLet)
-         setfirstLetter( newLet )
+        console.log(0)
       })
      .catch((error) => {
        if (random===true){
-        let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result = '';
-        for ( var i = 0; i < 10; i++ ) {
-          result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+         let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+         let result = '';
+         for ( var i = 0; i < 10; i++ ) {
+           result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
         }
-        email = `${result}@website.com`
-        password = "password12345"
+         email = `${result}@website.com`
+         password = "password12345"
        }
       auth.createUserWithEmailAndPassword(email, password).then((userCredential) => {
           })
@@ -84,15 +81,15 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
     setimageArray(json.results)   
     }
 
-    const displaySignIn = () => {
-      if (signIn){
-        return setsignIn(false)
-      }
+  const displaySignIn = () => {
+    if (signIn){
+      return setsignIn(false)
+    }
       setsignIn(true)
     }
 
-    const signOut = () => {
-      setcurrentUser(null)
+  const signOut = () => {
+    setcurrentUser(null)
       auth.signOut().then(function() {
         console.log('Signed Out');
       }, function(error) {
@@ -119,12 +116,13 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
           <button>Home</button>
         </Link>
         <div className="input-wrapper">
+          <Link  to="/" >
           <i onClick={searchPhotos} className="fas fa-search"></i>
+          </Link>
           <input type="text" onChange={handleChange} placeholder="Search"/>
         </div>
-          <i className="fas fa-bell"></i>
-          <i className="fas fa-comment-dots"></i>
-          <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}><span className="letter">{firstLetter}</span></i>
+          
+          <i onClick={displaySignIn} className={`fas fa-circle ${currentUser ? 'green' : 'grey'}`}></i>
           <i onClick={boxDisplayChange} className="fas fa-sort-down"></i>
 
           <div  style={{ display: boxDisplay}} className="selectionBox">
@@ -132,7 +130,6 @@ const Header = ({setimageArray,searchTerm,setsearchTerm,signIn,setsignIn}) =>{
              <button>Collection</button>
            </Link>
             <button onClick={signOut}>Sign Out</button>
-           
           </div>
           {signIn ? <Input createNewAccount={createNewAccount} signInExistingAccount={signInExistingAccount}/>
 
