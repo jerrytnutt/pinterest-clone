@@ -25,28 +25,7 @@ const ImagePage = ({searchTerm}) =>{
           }
       photo()
       }, [searchTerm]);
-      //// remove all
-      const savePhoto = async () => {
-        let con = auth.currentUser.uid
-        const currentArray = db.collection('users').doc(con);
-        const doc = await currentArray.get();
-        if (!doc.exists) {
-          const savedPhotoArray = []
-          savedPhotoArray.push(data.state.urls.regular)
-            return db.collection('users').doc(con).set({
-              name: "name",
-              photoArray:savedPhotoArray
-          })
-
-        }else{
-          let newArray = doc.data().photoArray
-          newArray.push(data.state.urls.regular)
-          return db.collection('users').doc(con).update({
-            name: "name",
-            photoArray:newArray
-        })
-         } 
-      }
+      
     return(
       <div className="ImagePage">
         <div className="doubleView">

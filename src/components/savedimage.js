@@ -16,7 +16,7 @@ const Savedimage = ({item,getArray}) =>{
       }
     return(
       <div style={{ display: displayTwo}} className="card">
-        <div onClick={changeSecondDisplay} style={{ display: display}} className="centerImage"><img src={item[1]} alt=""></img></div>
+        <div onClick={changeDisplay} style={{ display: display}} className="centerImage"><img src={item[1]} alt=""></img></div>
         <div className="shell">
           <div className="editButton" >
             <button onClick={changeSecondDisplay} className="view" >Remove</button>

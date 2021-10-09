@@ -4,7 +4,7 @@ import Header from "./components/header";
 import Gallery from "./components/gallery";
 import ImagePage from "./components/imagepage";
 import UserPage from "./components/userpage";
-import {BrowserRouter as Router,Route}  from 'react-router-dom'
+import {HashRouter, Route, Switch} from 'react-router-dom'
 
 function App() {
   const [imageArray, setimageArray] = useState([])
@@ -21,7 +21,7 @@ function App() {
   }, [searchTerm]);
   
   return (
-    <Router>
+    <HashRouter basename='/'>
     <div className="App">
     <Header setimageArray={setimageArray} 
       searchTerm={searchTerm} 
@@ -38,7 +38,7 @@ function App() {
       <UserPage/>
     </Route>
     </div>
-    </Router>
+    </HashRouter>
   );
 }
 export default App;

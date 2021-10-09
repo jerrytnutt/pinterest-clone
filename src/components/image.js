@@ -33,7 +33,7 @@ const Image = ({item,setsignIn}) =>{
       if (!doc.exists) {
         const savedPhotoArray = []
         savedPhotoArray.push({0:item.urls.small,1:item.urls.regular})
-        console.log(item.urls)
+        
         return db.collection('users').doc(con).set({
           name: "name",
           photoArray:savedPhotoArray
