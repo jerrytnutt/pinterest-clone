@@ -77,7 +77,7 @@ const ImagePage = ({searchTerm}) =>{
             </div>
             <h2>More Like This</h2>
             <div>
-            <div className="m">
+            <div className="mapData">
            {newData.map((item, index) => (
                
            <Image key={index} item={item}/>

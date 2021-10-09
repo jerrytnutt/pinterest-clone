@@ -33,7 +33,6 @@ input{
   padding-left: 60px;
   font-weight: bold;
   font-size: 20px;
-  
 }
 
 input:hover{
@@ -87,10 +86,9 @@ input:hover{
   border-radius: 5px;
   z-index:5;
   font-size: 35px;
-  margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
+  margin: 5% auto; 
   left: 0;
   right: 0;
-  
 }
 .signInScreen input{
   width: 60%;
@@ -111,7 +109,6 @@ input:hover{
   color: white;
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
 .header i{
@@ -187,15 +184,14 @@ input:hover{
   height: 100%;
   border-radius: 25px;
   background-color: rgb(233, 233, 233);
-  
   padding: 10px;
   color: black;
   font-weight: bold;
   border:0;
   font-size: 14px;
   height: 50px;
-  
 }
+
 .one:hover{
   background-color: rgb(175, 175, 175);
   cursor: pointer;
@@ -206,7 +202,6 @@ input:hover{
   height: 100%;
   border-radius: 20px;
   background-color: rgb(216, 216, 216);
-
 }
 
 .saveButton, .editButton{
@@ -224,6 +219,7 @@ input:hover{
   height: 50px;
   z-index: 6;
 }
+
 .saveButton button, .editButton button{
   border-radius: 40%;
   padding: 10px;
@@ -235,7 +231,6 @@ input:hover{
   font-size: 16px;
   width: 70px;
   height: 50px;
-  
 }
 .saveButton button:hover{
   background-color: brown;
@@ -256,7 +251,6 @@ h4{
   align-items: center;
   border: 1px solid black;
 }
-
 .popup-background {
   visibility: hidden;
   position: absolute;
@@ -301,12 +295,9 @@ h4{
 
 .profileDetails{
   display: flex;
-
   width: 100%; 
 }
-
 .blockOne{
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -322,9 +313,6 @@ h4{
   font-size: 25px;
   margin-left: 5px;
 }
-
-
-
 .blockTwo{
   background-color: black;
   margin-left: auto
@@ -337,11 +325,8 @@ h4{
 }
 .selector button{
   float: left;
-  
 }
-
-.m{
- 
+.mapData{
   column-gap: 15px;
   width: 95%;
 }
@@ -351,7 +336,6 @@ h4{
   flex-direction: row;
   align-items: center;
   flex-basis: 50% 20% 20%;
-  
   margin: 0;
   bottom: 0px;
   width: 90%;
@@ -362,7 +346,6 @@ h4{
 }
 
 .actionSave{
-  
   flex-basis: 10%;
   height: 100%;
   border-radius: 20px;
@@ -388,7 +371,6 @@ h4{
 
 }
 .des{
-
   font-family: "Nunito";
   padding: 25px;
   color: black;
@@ -439,22 +421,17 @@ h4{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
     position: absolute;
     top: 50%;
-  
     margin-top: -50px;
     margin-left: -50px;
-    
     padding: 5px;
     background-color: #FFF;
-    
     border: 3px solid #CCC;
     border-radius: 5px;
     z-index: 5;
-   
-
 }
+
 .centerImage img{
   width: 100%;
   height: 100%;
