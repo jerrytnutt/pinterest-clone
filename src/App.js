@@ -1,10 +1,11 @@
 import './App.scss';
 import {useState, useEffect} from "react"
 import Header from "./components/header";
+import Footer from "./components/footer";
 import Gallery from "./components/gallery";
 import ImagePage from "./components/imagepage";
 import UserPage from "./components/userpage";
-import {HashRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 function App() {
   const [imageArray, setimageArray] = useState([])
@@ -21,7 +22,7 @@ function App() {
   }, [searchTerm]);
   
   return (
-    <HashRouter basename='/'>
+    <BrowserRouter basename='/'>
     <div className="App">
     <Header setimageArray={setimageArray} 
       searchTerm={searchTerm} 
@@ -31,14 +32,15 @@ function App() {
     <Route exact path="/">
       <Gallery imageArray={imageArray} setsignIn={setsignIn}/>
     </Route>
-    <Route exact path={`/shop/:subId`} >
+    <Route exact path={`/image/:subId`} >
       <ImagePage searchTerm={searchTerm}/>
     </Route>
-    <Route exact path="/UserPage" >
+    <Route exact path="/user-page" >
       <UserPage/>
     </Route>
+    <Footer/>
     </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 export default App;
