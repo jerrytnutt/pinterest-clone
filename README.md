@@ -2,9 +2,12 @@
 
 # Features
 - User Authentication
-- Uses Unsplash API t0 search for photos
-- Uses Firebase on the backend to store user ID and Photo collections
-- User can search and save collection of favorite photos
+- Uses Unsplash API to search for photos
+- Uses Firebase on the backend to store user ID and photo collections
+- User can search and save collection of their favorite photos
+# Live Demo
+View [Live Demo](https://jerrytnutt.github.io/pinterest-clone/#/)
 
-<img src='./images/notepad.png'><img>
+# Preview
+<img src='./public/pinsave.png'><img>
 
