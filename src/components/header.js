@@ -36,7 +36,7 @@ const Header = ({
         }
         auth
           .createUserWithEmailAndPassword(email, password)
-          .then((userCredential) => {
+          .then(() => {
             setfirstLetter(email.substring(0, 1));
           })
           .catch((error) => {
@@ -75,9 +75,7 @@ const Header = ({
     setsignIn(false);
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        var user = userCredential.user;
-      })
+      .then((userCredential) => {})
       .catch((error) => {
         alert(error.message);
       });
@@ -90,12 +88,14 @@ const Header = ({
   useEffect(() => {
     auth.onAuthStateChanged(function (user) {
       if (user) {
+        setfirstLetter(user.email.substring(0, 1));
+
         setcurrentUser(user);
       } else {
         console.log("No current User");
       }
     });
-  }, []);
+  });
 
   const searchPhotos = async () => {
     const res = await fetch(
@@ -106,6 +106,7 @@ const Header = ({
   };
 
   const displaySignIn = () => {
+    console.log(firstLetter);
     if (signIn) {
       return setsignIn(false);
     }
