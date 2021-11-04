@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 import Gallery from "./components/gallery";
 import ImagePage from "./components/imagepage";
 import UserPage from "./components/userpage";
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Router,Route} from 'react-router-dom'
 
 function App() {
   const [imageArray, setimageArray] = useState([])
@@ -22,14 +22,14 @@ function App() {
   }, [searchTerm]);
   
   return (
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
     <div className="App">
     <Header setimageArray={setimageArray} 
       searchTerm={searchTerm} 
       setsearchTerm={setsearchTerm} 
       signIn={signIn} 
       setsignIn={setsignIn}/>
-    <Route exact path="/">
+    <Route exact path="/pinterest-clone">
       <Gallery imageArray={imageArray} setsignIn={setsignIn}/>
     </Route>
     <Route exact path={`/image/:subId`} >
