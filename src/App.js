@@ -29,7 +29,7 @@ function App() {
       setsearchTerm={setsearchTerm} 
       signIn={signIn} 
       setsignIn={setsignIn}/>
-    <Route exact path="/pinterest-clone">
+    <Route exact path="/">
       <Gallery imageArray={imageArray} setsignIn={setsignIn}/>
     </Route>
     <Route exact path={`/image/:subId`} >
