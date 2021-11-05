@@ -148,7 +148,7 @@ const Header = ({
         <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
           <i onClick={searchPhotos} className="fas fa-search"></i>
         </Link>
-        <input type="text" onChange={handleChange} placeholder="Search" />h
+        <input type="text" onChange={handleChange} placeholder="Search" />
       </div>
 
       <div onClick={displaySignIn} className="circle">

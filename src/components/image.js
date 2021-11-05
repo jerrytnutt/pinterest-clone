@@ -74,7 +74,7 @@ const Image = ({ item, setsignIn }) => {
               onClick={() => {
                 window.open(linkPage);
               }}
-              className="one"
+              className="linkBackground"
             >
               {newUrl}
             </button>

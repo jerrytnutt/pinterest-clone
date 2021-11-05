@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 import Gallery from "./components/gallery";
 import ImagePage from "./components/imagepage";
 import UserPage from "./components/userpage";
-import {BrowserRouter, Router,Route} from 'react-router-dom'
+import {BrowserRouter,Route} from 'react-router-dom'
 
 function App() {
   const [imageArray, setimageArray] = useState([])
