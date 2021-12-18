@@ -12,7 +12,7 @@ const Header = ({
 }) => {
   const [currentUser, setcurrentUser] = useState(false);
   const [boxDisplay, setboxDisplay] = useState("none");
-  const [firstLetter, setfirstLetter] = useState("");
+  const [firstLetter, setfirstLetter] = useState("Sign In");
 
   const createNewAccount = (email, password, random = false) => {
     setsignIn(false);
@@ -142,7 +142,7 @@ const Header = ({
     <div className="header">
       <i className="fab fa-pinterest-square"></i>
       <Link to="/">
-        <button>Home</button>
+        <button className="homeButton">Home</button>
       </Link>
       <div className="input-wrapper">
         <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>

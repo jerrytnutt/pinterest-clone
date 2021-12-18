@@ -42,7 +42,7 @@ input:hover{
   background-color: rgb(189, 189, 189);
 }
 
-.header button{
+.homeButton{
   background-color: black;
   color: white;
   border: 0;
@@ -69,15 +69,22 @@ input:hover{
 }
 
 .circle{
-  font-size: 25px;
-  width: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
   height: 50px;
   background-color: rgb(197, 197, 197);
-  border-radius: 50%;
+  border-radius: 10%;
+  background-color: rgb(152, 152, 236);
   text-align: center;
   vertical-align: middle;
   line-height: 50px;
+  cursor: pointer;
   
+}
+.circle:hover{
+  background-color: rgb(73, 73, 230);
+
 }
 
 .letter{
@@ -121,8 +128,12 @@ input:hover{
   padding: 5px;
   background-color: rgb(204, 14, 14);
   color: white;
+  border:0px;
+  padding: 10px;
   margin-top: 10px;
+  font-weight: bold;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .header i{
@@ -192,18 +203,22 @@ input:hover{
   height: 40px;
   z-index: 3;
 }
-
 .linkBackground{
-  flex-basis: 60%;
-  height: 100%;
   border-radius: 25px;
-  background-color: rgb(233, 233, 233);
+  background-color: rgba(241, 241, 241, 0.7);
   padding: 10px;
-  color: black;
-  font-weight: bold;
-  border:0;
-  font-size: 14px;
-  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkBackground button{
+padding: 5px;
+font-weight: bold;
+font-size: 16px;
+border:0;
+background-color: rgba(241, 241, 241,0);
 }
 
 .linkBackground:hover{
@@ -237,7 +252,7 @@ input:hover{
 .saveButton button, .editButton button{
   border-radius: 40%;
   padding: 10px;
-  background-color: rgb(233, 0, 0);
+  background-color: #e60023;
   color: white;
   font-weight: bold;
   border:0;
@@ -477,7 +492,14 @@ h4{
   position: absolute;
   bottom: 90%;
   right: 40px;
-  background-color: red;
+  width: 30px;
+  height: 30px;
+  color: white;
+  border: 0px;
+  background-color: black;
+  border-radius: 10px;
+  font-size: 10px;
+  cursor: pointer;
   
 }
 .inputClose:hover{

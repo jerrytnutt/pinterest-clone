@@ -70,14 +70,16 @@ const Image = ({ item, setsignIn }) => {
 
         <div className="buttonBox">
           {newUrl ? (
-            <button
-              onClick={() => {
-                window.open(linkPage);
-              }}
-              className="linkBackground"
-            >
-              {newUrl}
-            </button>
+            <div className="linkBackground">
+              <i class="fa fa-arrow-up" aria-hidden="true"></i>{" "}
+              <button
+                onClick={() => {
+                  window.open(linkPage);
+                }}
+              >
+                {newUrl}
+              </button>
+            </div>
           ) : (
             ""
           )}
