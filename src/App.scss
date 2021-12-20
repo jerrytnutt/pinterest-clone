@@ -261,7 +261,7 @@ background-color: rgba(241, 241, 241,0);
   width: 70px;
   height: 50px;
 }
-.saveButton button:hover{
+.saveButton button:hover, .editButton button:hover{
   background-color: brown;
   cursor: pointer;
 }
@@ -448,7 +448,17 @@ h4{
 .selectionBox button{
   width: 100px;
   height: 50px;
+  background-color: rgb(231, 231, 231);
+ border: 0px;
+ border-radius: 5px;
+ font-weight: bold;
+ cursor: pointer;
+  font-size: 18px;
   margin-bottom: 5px;
+}
+.selectionBox button:hover{
+ background-color: rgb(212, 212, 212);
+ 
 }
 
 .centerImage{
@@ -514,10 +524,12 @@ h4{
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  background-color: rgb(226, 226, 226);
+  position: relative;
+  
+  background-color: rgb(241, 241, 241);
   font-size: 25px;
   margin-top: auto;
-  margin-top: 10px;
+  
   padding: 20px;
 }
 .fa-github{
